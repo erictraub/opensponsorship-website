@@ -26,6 +26,11 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
-
-
+router.put('/:athleteId', (req, res, next) => {
+    Athlete.findByIdAndUpdate(req.params.athleteId, req.body, {new: true})
+    .then(function(updatedAthlete){
+        res.status(200).send(updatedAthlete);
+    })
+    .catch(next);
+});
 
